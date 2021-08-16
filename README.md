@@ -6,3 +6,4 @@ https://techpluscode.de/coding-fuer-kids-ein-kniffel-clone/ // lösung <br>
 <br> 
 # Würfel.php
 https://trainyourprogrammer.de/php-A66-L1-verteilung-beim-wuerfeln-mit-zwei-wuerfeln.html <br>
+http://etutorials.org/Programming/PHP+MYSQL.+Programming+for+beginners/Chapter+3+Controlling+Your+Code+with+Conditions+and+Functions/Creating+a+Random+Number/ <br>
