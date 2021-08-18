@@ -8,3 +8,4 @@ https://websistent.com/multiple-submit-buttons-in-php/ <br>
 # Würfel.php
 https://trainyourprogrammer.de/php-A66-L1-verteilung-beim-wuerfeln-mit-zwei-wuerfeln.html <br>
 http://etutorials.org/Programming/PHP+MYSQL.+Programming+for+beginners/Chapter+3+Controlling+Your+Code+with+Conditions+and+Functions/Creating+a+Random+Number/ <br>
+https://stackoverflow.com/questions/14839342/php-random-number-loop - rnd number loop <br>
