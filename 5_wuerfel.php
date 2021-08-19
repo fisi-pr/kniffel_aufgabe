@@ -7,7 +7,13 @@ $zufallzahl4= "";
 $zufallzahl5= "";
 $i= 1;
 
-
+/**
+*   5 Zufallszahlen als Text ausgeben
+*   Werte in hidden boxes speichern
+*   Zufallswerte in Variablen 1-5 schreiben.
+*
+*
+*/
 IF (isset($_POST['wuerfeln'])) {
     while ($i <= 5) {
         $i=rand(1,6);
