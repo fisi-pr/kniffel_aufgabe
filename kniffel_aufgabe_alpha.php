@@ -12,25 +12,37 @@ $c2="";
 $c3="";
 $c4="";
 $c5="";
-$i=1;
+$i=1;  // Anzahl der wuerfeln max=3 //
+$spieler = 1;
+
+$rundenzaehler=1;  // Anzahl der runden ist max 26 //
+
+$auswertung= 0;   // wird ein eins gesetzt, wenn der spieler auswertet  //
 
 if(isset($_POST['runde'])) {
     $i=$_POST['runde'];
     $i++;
     echo "$i <br />";
 }
-
-
+if(isset($_POST['auswertung'])) {
+     $i=1;
+     if(isset($_POST['spieler'])){
+         $spieler=$_POST['spieler'];
+         if ($spieler==1){
+             $spieler=2;
+         } else {
+             $spieler=1;
+         }
+     }
+    echo " Ergibnis eintragen <br />";
+}   
 
 $w1 = rand(1,6);
 $w2 = rand(1,6);
 $w3 = rand(1,6);
 $w4 = rand(1,6);
 $w5 = rand(1,6);
-$spieler = 1;
-$rundenzaehler=1;
-$auswertung=1;
-$r="";
+
 
 if (isset($_POST['wuerfeln'])) {
     if (isset($_POST['b1'])) {
@@ -84,7 +96,7 @@ if (isset($_POST['wuerfeln'])) {
         
         Rundenzaeler: <input type="text" name="rundenzaehler" value="<?php echo $rundenzaehler; ?>" />
         
-        Auswertung: <input type="text" name="auswertung" value="<?php echo $auswertung; ?>" />
+        
         <input type="hidden" name="runde" value="<?php echo $i; ?>" />
         <br/>
 
@@ -93,7 +105,7 @@ if (isset($_POST['wuerfeln'])) {
         Wuerfel 3: <?php echo $w3;?> <input type="hidden" name="wuerfel_3" value="<?php echo $w3;?>" /><input type="checkbox" name="b3" <?php echo $c3;?> /><br />
         Wuerfel 4: <?php echo $w4;?> <input type="hidden" name="wuerfel_4" value="<?php echo $w4;?>" /><input type="checkbox" name="b4" <?php echo $c4;?> /><br />
         Wuerfel 5: <?php echo $w5;?> <input type="hidden" name="wuerfel_5" value="<?php echo $w5;?>" /><input type="checkbox" name="b5" <?php echo $c5;?> /><br />
-        
+        <input type="submit" name="auswertung" value="Auswertung" />
         <?php if($i<3) {
         ?>
         
@@ -102,15 +114,9 @@ if (isset($_POST['wuerfeln'])) {
         <?php } 
         ?>
         <br/>
-        <?php ?>
-        <?php if($r<26){
-            ?>
-            <input type="submit" name="auswertung" value="auswertung" />
-         <?php   
-        } else {
-            $ergebnis="";
-        }
-        ?>
+            
+          
+        
 
     </form>
 
