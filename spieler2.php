@@ -2,7 +2,7 @@
 
 include("db.php");
 
-$spieler1="";
+$spieler2="";
 IF (isset($_POST["save"])) {
     echo "Eingabe gespeichert <br /> <br />";
     IF (isset($_POST["spieler2"])) {

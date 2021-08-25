@@ -16,6 +16,12 @@ $c4="";
 $c5="";
 $i=1;  // Anzahl der wuerfeln max=3 //
 $spieler = 1;
+$sql = "SELECT name FROM test WHERE id = 1";
+$result=send_sql($sql);
+$spieler1="$result";
+$sql = "SELECT name FROM test WHERE id = 2";
+$result=send_sql($sql);
+$spieler2="$result";
 
 $rundenzaehler=1;  // Anzahl der runden ist max 26 //
 
@@ -32,11 +38,14 @@ if(isset($_POST['auswertung'])) {
          $spieler=$_POST['spieler'];
          if ($spieler==1){
              $spieler=2;
+             echo "$spieler2 ist an der Reihe.";
          } else {
              $spieler=1;
+             echo "$spieler1 ist an der Reihe.";
+
          }
      }
-    echo " Ergibnis eintragen <br />";
+    echo " Ergebnis eintragen <br />";
 }   
 
 $w1 = rand(1,6);
@@ -107,7 +116,7 @@ if (isset($_POST['wuerfeln'])) {
         Wuerfel 3: <?php echo $w3;?> <input type="hidden" name="wuerfel_3" value="<?php echo $w3;?>" /><input type="checkbox" name="b3" <?php echo $c3;?> /><br />
         Wuerfel 4: <?php echo $w4;?> <input type="hidden" name="wuerfel_4" value="<?php echo $w4;?>" /><input type="checkbox" name="b4" <?php echo $c4;?> /><br />
         Wuerfel 5: <?php echo $w5;?> <input type="hidden" name="wuerfel_5" value="<?php echo $w5;?>" /><input type="checkbox" name="b5" <?php echo $c5;?> /><br />
-        <input type="submit" name="auswertung" value="Auswertung" />
+        
         <?php if($i<3) {
         ?>
         
@@ -115,12 +124,42 @@ if (isset($_POST['wuerfeln'])) {
 
         <?php } 
         ?>
+        
+        <?php if($i=3) {
+        ?>
+        <input type="submit" name="auswertung" value="Auswertung" />
+        <?php
+        }
+        ?>
         <br/>
+        </form>
+
             
-          
+    <form action="" method="get"><table>
+<tr><td>Einser</td><td>&nbsp;</td></tr>
+<tr><td>Zweier</td><td>&nbsp;</td></tr>
+<tr><td>Dreier</td><td>&nbsp;</td></tr>
+<tr><td>Vierer</td><td>&nbsp;</td></tr>
+<tr><td>Fuenfer</td><td>&nbsp;</td></tr>
+<tr><td>Sechser</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td>Bonus</td><td>  0</td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td>3er-Pasch</td><td>&nbsp;</td></tr>
+<tr><td>4er-Pasch</td><td>&nbsp;</td></tr>
+<tr><td>FullHouse</td><td>&nbsp;</td></tr>
+<tr><td>Kleine Strasse</td><td>&nbsp;</td></tr>
+<tr><td>Grosse Strasse</td><td>&nbsp;</td></tr>
+<tr><td>Kniffel</td><td>&nbsp;</td></tr>
+<tr><td>Chance</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td></td></tr>
+<tr><td>Summe</td><td>  0</td></tr>
+</table>
         
 
     </form>
+
+    Spiel
 
 </body>
 </html>
