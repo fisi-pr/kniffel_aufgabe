@@ -2,6 +2,8 @@
 
 <?php
 
+include("db.php");
+
 $w1='';
 $w2='';
 $w3='';
