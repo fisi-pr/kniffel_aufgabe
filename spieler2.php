@@ -3,17 +3,21 @@
 include("db.php");
 
 $spieler2="";
+$eingabe= 1;
 IF (isset($_POST["save"])) {
-    echo "Eingabe gespeichert <br /> <br />";
+    
     IF (isset($_POST["spieler2"])) {
-        $spieler1 = $_POST["spieler2"];
-        echo "Hallo $spieler2, schön dich zu sehen! <br />";
-        $sql = "INSERT INTO test (name) VALUES($spieler2)";
+        $spieler2 = $_POST["spieler2"];
+        $sql = "INSERT INTO test (name) VALUES('$spieler2')";
+        if($result=mysqli_query($conn,$sql)) {
+         echo "Eingabe gespeichert <br /> <br />";
+         echo "Hallo $spieler2, schön dich zu sehen! <br />";
+         $eingabe=0;
         header('Refresh: 5; URL= kniffel_aufgabe_alpha.php');
+        } else {
+                echo "Anfrage aendern!" . $sql . "<br />" . mysqli_error($conn);
+         }
     }
-}
-else {
-    echo "Bitte erneut versuchen <br /> <br />";
 }
 
 ?>
@@ -26,10 +30,16 @@ else {
     <title>Spieler 2: Namen eingeben!</title>
 </head>
 <body>
+    <?php
+        if($eingabe==1){
+    ?>        
         Spieler 2, bitte geben Sie Ihren Namen ein! <br />
     <form action="spieler2.php" method="POST">
         Spieler 2: <input type="text" name="spieler2" value="<?php echo "$spieler2"; ?>" />
          <input type="submit" name="save" value="Save" />
 </form>
+<?php
+        }
+?>
 </body>
 </html>

@@ -16,12 +16,13 @@ $c4="";
 $c5="";
 $i=1;  // Anzahl der wuerfeln max=3 //
 $spieler = 1;
-$sql = "SELECT name FROM test WHERE id = 1";
+$sql = "WITH OrderedID AS
+(SELECT id ROW_NUMBER() OVER(ORDER BY id DESC) AS 'ROW_NUM'  FROM test) SELECT name FROM OrderedID where ROW_NUM = 2";
 $result=send_sql($sql);
-$spieler1="$result";
-$sql = "SELECT name FROM test WHERE id = 2";
+$spieler1="$sql";
+$sql = "SELECT name FROM test ORDER BY id DESC LIMIT 1";
 $result=send_sql($sql);
-$spieler2="$result";
+$spieler2="$sql";
 
 $rundenzaehler=1;  // Anzahl der runden ist max 26 //
 
