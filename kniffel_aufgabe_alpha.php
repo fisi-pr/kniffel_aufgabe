@@ -15,7 +15,19 @@ $c3="";
 $c4="";
 $c5="";
 $i=1;  // Anzahl der wuerfeln max=3 //
+$a="";  // Anzahl der Runden max 26
 $spieler = 1;
+$oberehaelfte="";
+$gesamtoben="";
+$gesamtunten="";
+$gesamtergebnis="";
+$ergebnis1=0;
+$ergebnis2=0;
+$ergebnis3=0;
+$ergebnis4=0;
+$ergebnis5=0;
+$ergebnis6=0;
+
 $sql = "SELECT * FROM test ORDER BY id DESC LIMIT 1 OFFSET 1";
 $result1=send_sql($sql);
 $row1= mysqli_fetch_array($result1);
@@ -32,10 +44,16 @@ $auswertung= 0;   // wird ein eins gesetzt, wenn der spieler auswertet  //
 if(isset($_POST['runde'])) {
     $i=$_POST['runde'];
     $i++;
-    echo "$i <br />";
+
 }
 if(isset($_POST['auswertung'])) {
      $i=1;
+     if(isset($_POST['a'])) {
+        $a=$_POST['a'];
+        if(IS_Numeric($a)) $a++;
+        else $a=2;
+    }
+
      if(isset($_POST['spieler'])){
          $spieler=$_POST['spieler'];
          if ($spieler==1){
@@ -48,7 +66,8 @@ if(isset($_POST['auswertung'])) {
          }
      }
     echo " Ergebnis eintragen <br />";
-}   
+}   // auswertung
+
 
 $w1 = rand(1,6);
 $w2 = rand(1,6);
@@ -89,6 +108,162 @@ if (isset($_POST['wuerfeln'])) {
         $w5=rand(1,6);
     }
 }
+function einser($w1,$w2,$w3,$w4,$w5){
+    if($w1==1){
+        
+    } else{
+        $w1=0;}
+        if($w2==1){
+        
+        } else{
+            $w2=0;}
+            if($w3==1){
+        
+            } else{
+                $w3=0;}
+                if($w4==1){
+        
+                } else{
+                    $w4=0;}
+                    if($w5==1){
+        
+                    } else{
+                        $w5=0;}
+
+    $ergebnis1= $w1+$w2+$w3+$w4+$w5;
+    return $ergebnis1;
+}
+
+function zweier($w1,$w2,$w3,$w4,$w5){
+    if($w1==2){
+        
+    } else{
+        $w1=0;}
+        if($w2==2){
+        
+        } else{
+            $w2=0;}
+            if($w3==2){
+        
+            } else{
+                $w3=0;}
+                if($w4==2){
+        
+                } else{
+                    $w4=0;}
+                    if($w5==2){
+        
+                    } else{
+                        $w5=0;}
+
+    $ergebnis2= $w1+$w2+$w3+$w4+$w5;
+
+    return $ergebnis2;
+}
+function dreier($w1,$w2,$w3,$w4,$w5){
+    if($w1==3){
+        
+    } else{
+        $w1=0;}
+        if($w2==3){
+        
+        } else{
+            $w2=0;}
+            if($w3==3){
+        
+            } else{
+                $w3=0;}
+                if($w4==3){
+        
+                } else{
+                    $w4=0;}
+                    if($w5==3){
+        
+                    } else{
+                        $w5=0;}
+
+    $ergebnis3= $w1+$w2+$w3+$w4+$w5;
+    return $ergebnis3;
+}
+function vierer($w1,$w2,$w3,$w4,$w5){
+    if($w1==4){
+        
+    } else{
+        $w1=0;}
+        if($w2==4){
+        
+        } else{
+            $w2=0;}
+            if($w3==4){
+        
+            } else{
+                $w3=0;}
+                if($w4==4){
+        
+                } else{
+                    $w4=0;}
+                    if($w5==4){
+        
+                    } else{
+                        $w5=0;}
+
+    $ergebnis4= $w1+$w2+$w3+$w4+$w5;
+    return $ergebnis4;
+}
+function fünfer ($w1,$w2,$w3,$w4,$w5){
+    if($w1==5){
+        
+    } else{
+        $w1=0;}
+        if($w2==5){
+        
+        } else{
+            $w2=0;}
+            if($w3==5){
+        
+            } else{
+                $w3=0;}
+                if($w4==5){
+        
+                } else{
+                    $w4=0;}
+                    if($w5==5){
+        
+                    } else{
+                        $w5=0;}
+
+    $ergebnis5= $w1+$w2+$w3+$w4+$w5;
+    return $ergebnis5;
+}
+function sechser($w1,$w2,$w3,$w4,$w5){
+    if($w1==6){
+        
+    } else{
+        $w1=0;}
+        if($w2==6){
+        
+        } else{
+            $w2=0;}
+            if($w3==6){
+        
+            } else{
+                $w3=0;}
+                if($w4==6){
+        
+                } else{
+                    $w4=0;}
+                    if($w5==6){
+        
+                    } else{
+                        $w5=0;}
+
+    $ergebnis6= $w1+$w2+$w3+$w4+$w5;
+    return $ergebnis6;
+}
+$oberehaelfte=$ergebnis1+$ergebnis2+$ergebnis3+$ergebnis4+$ergebnis5+$ergebnis6;
+if($oberehaelfte>=63) {
+    $gesamtoben=$oberehaelfte+35;
+}
 
 
 ?>
@@ -107,11 +282,12 @@ if (isset($_POST['wuerfeln'])) {
         
         Spieler: <input type="text" name="spieler" value="<?php echo $spieler; ?>" />
         
-        Rundenzaeler: <input type="text" name="rundenzaehler" value="<?php echo $rundenzaehler; ?>" />
         
         
         <input type="hidden" name="runde" value="<?php echo $i; ?>" />
         <br/>
+        <input type="hidden" name="a" value="<?php echo $a; ?>" /> <?php if(IS_Numeric($a)) echo "Runde: $a <br/>";
+        else echo "Runde: 1 <br/>  ";?>
 
         Wuerfel 1: <?php echo $w1;?> <input type="hidden" name="wuerfel_1" value="<?php echo $w1;?>" /><input type="checkbox" name="b1" <?php echo $c1;?> /><br />
         Wuerfel 2: <?php echo $w2;?> <input type="hidden" name="wuerfel_2" value="<?php echo $w2;?>" /><input type="checkbox" name="b2" <?php echo $c2;?> /><br />
@@ -138,12 +314,12 @@ if (isset($_POST['wuerfeln'])) {
 
             
     <form action="" method="get"><table>
-<tr><td>Einser</td><td>&nbsp;</td></tr>
-<tr><td>Zweier</td><td>&nbsp;</td></tr>
-<tr><td>Dreier</td><td>&nbsp;</td></tr>
-<tr><td>Vierer</td><td>&nbsp;</td></tr>
-<tr><td>Fuenfer</td><td>&nbsp;</td></tr>
-<tr><td>Sechser</td><td>&nbsp;</td></tr>
+<tr><td>Einser</td><td><?php echo einser($w1,$w2,$w3,$w4,$w5)?> </td></tr>
+<tr><td>Zweier</td><td><?php echo zweier($w1,$w2,$w3,$w4,$w5)?></td></tr>
+<tr><td>Dreier</td><td><?php echo dreier($w1,$w2,$w3,$w4,$w5)?></td></tr>
+<tr><td>Vierer</td><td><?php echo vierer($w1,$w2,$w3,$w4,$w5)?></td></tr>
+<tr><td>Fuenfer</td><td><?php echo fünfer($w1,$w2,$w3,$w4,$w5)?></td></tr>
+<tr><td>Sechser</td><td><?php echo sechser($w1,$w2,$w3,$w4,$w5)?></td></tr>
 <tr><td>&nbsp;</td><td></td></tr>
 <tr><td>Bonus</td><td>  0</td></tr>
 <tr><td>&nbsp;</td><td></td></tr>
