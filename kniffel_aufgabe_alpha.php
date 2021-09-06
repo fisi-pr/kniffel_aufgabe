@@ -27,6 +27,13 @@ $ergebnis3=0;
 $ergebnis4=0;
 $ergebnis5=0;
 $ergebnis6=0;
+$ergebnis7=0;
+$ergebnis8=0;
+$ergebnis9=0;
+$ergebnis10=0;
+$ergebnis11=0;
+$ergebnis12=0;
+$ergebnis13=0;
 
 $sql = "SELECT * FROM test ORDER BY id DESC LIMIT 1 OFFSET 1";
 $result1=send_sql($sql);
@@ -264,7 +271,86 @@ $oberehaelfte=$ergebnis1+$ergebnis2+$ergebnis3+$ergebnis4+$ergebnis5+$ergebnis6;
 if($oberehaelfte>=63) {
     $gesamtoben=$oberehaelfte+35;
 }
+function dreierpasch($w1,$w2,$w3,$w4,$w5) {
+    if($w1==$w2 && $w2==$w3) {
+        $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+    }
+        elseif($w1==$w2&&$w2==$w4) {
+            $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+        }
+        elseif($w1==$w2&&$w2==$w5) {
+            $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+        }
+        elseif($w1==$w4&&$w4==$w5) {
+            $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+        }
+        elseif($w3==$w2&&$w2==$w4) {
+            $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+        }
+        elseif($w5==$w2&&$w2==$w4) {
+            $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+        }
+        elseif($w3==$w5&&$w5==$w4) {
+            $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+        }
+        elseif($w3==$w5&&$w5==$w2) {
+            $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+        }
+        else {
+            $ergebnis7 = 0;
+        }
 
+}
+function viererpasch($w1,$w2,$w3,$w4,$w5) {
+    if($w1==$w2&&$w2==$w3&&$w3=$w4) {
+        $ergebnis8 = $w1+$w2+$w3+$w4+$w5;
+    }
+    elseif($w3==$w5&&$w5==$w2&&$w2==$w4) {
+        $ergebnis8 = $w1+$w2+$w3+$w4+$w5;
+    }
+    elseif($w1==$w2&&$w2==$w3&&$w3==$w5) {
+        $ergebnis8 = $w1+$w2+$w3+$w4+$w5;
+    }
+    elseif($w1==$w3&&$w3==$w5&&$w5==$w4) {
+        $ergebnis7 = $w1+$w2+$w3+$w4+$w5;
+    }
+    elseif($w1==$w2&&$w2==$w4&&$w5=$w4) {
+        $ergebnis8 = $w1+$w2+$w3+$w4+$w5;
+    }
+    else {
+        $ergebnis8 = 0;
+    }
+}
+function fullhouse($w1,$w2,$w3,$w4,$w5) {
+    if($w1==$w2&&$w2==$w3 && $w4==$w5) {
+        $ergebnis9 = 25;
+    }
+        elseif($w1==$w2&&$w2==$w4 && $w3==$w5) {
+            $ergebnis9 = 25;
+        }
+        elseif($w1==$w2&&$w2==$w5 && $w3==$w4) {
+            $ergebnis9 = 25;
+        }
+        elseif($w1==$w4&&$w4==$w5 && $w2==$w3) {
+            $ergebnis9 = $w1+$w2+$w3+$w4+$w5;
+        }
+        elseif($w3==$w2&&$w2==$w4 && $w1==$w5) {
+            $ergebnis9 = 25;
+        }
+        elseif($w3==$w5&&$w5==$w4 && $w1==$w2) {
+            $ergebnis9 = 25;
+        }
+        elseif($w3==$w5&&$w5==$w2 && $w1==$w4) {
+            $ergebnis9 = 25;
+        }
+        elseif($w5==$w2&&$w2==$w4 && $w1==$w3) {
+            $ergebnis9 = 25;
+        }
+        else {
+            $ergebnis9 = 0;
+        }
+
+}
 
 ?>
 
@@ -313,8 +399,10 @@ if($oberehaelfte>=63) {
         </form>
 
             
-    <form action="" method="get"><table>
-<tr><td>Einser</td><td><?php echo einser($w1,$w2,$w3,$w4,$w5)?> </td></tr>
+    <form action="" method="get"><table border="1">
+
+    <tr><td>Kategorie</td><td>mögliches Würfelergebnis </td><td>Spieler1</td><td>Spieler2</td></tr>
+    <tr><td>Einser</td><td><?php echo einser($w1,$w2,$w3,$w4,$w5)?> </td><td><?php echo $spieler1; ?></td><td><?php echo $spieler2; ?></td></tr>
 <tr><td>Zweier</td><td><?php echo zweier($w1,$w2,$w3,$w4,$w5)?></td></tr>
 <tr><td>Dreier</td><td><?php echo dreier($w1,$w2,$w3,$w4,$w5)?></td></tr>
 <tr><td>Vierer</td><td><?php echo vierer($w1,$w2,$w3,$w4,$w5)?></td></tr>
