@@ -17,10 +17,14 @@ $c5="";
 $i=1;  // Anzahl der wuerfeln max=3 //
 $a="";  // Anzahl der Runden max 26
 $spieler = 1;
-$oberehaelfte="";
-$gesamtoben="";
-$gesamtunten="";
-$gesamtergebnis="";
+$oberehaelfte1="";
+$gesamtoben1="";
+$gesamtunten1="";
+$gesamtergebnis1="";
+$oberehaelfte2="";
+$gesamtoben2="";
+$gesamtunten2="";
+$gesamtergebnis2="";
 $ergebnis1=0;
 $ergebnis2=0;
 $ergebnis3=0;
@@ -34,6 +38,9 @@ $ergebnis10=0;
 $ergebnis11=0;
 $ergebnis12=0;
 $ergebnis13=0;
+$auswertung=0;
+$eingabe=1;
+
 
 $sql = "SELECT * FROM test ORDER BY id DESC LIMIT 1 OFFSET 1";
 $result1=send_sql($sql);
@@ -51,6 +58,10 @@ $auswertung= 0;   // wird ein eins gesetzt, wenn der spieler auswertet  //
 if(isset($_POST['runde'])) {
     $i=$_POST['runde'];
     $i++;
+    if($i==27) {
+        header('Refresh: 5; URL= spielende.php');
+
+    }
 
 }
 if(isset($_POST['auswertung'])) {
@@ -59,6 +70,19 @@ if(isset($_POST['auswertung'])) {
         $a=$_POST['a'];
         if(IS_Numeric($a)) $a++;
         else $a=2;
+    }
+    IF (isset($_POST["save"])) {
+    
+        IF (isset($_POST["auswertung"])) {
+            $auswertung = $_POST[$w1,$w2;$w3;$w4;$w5];
+            $sql = "INSERT INTO test (name) VALUES('$auswertung')";
+            if($result=mysqli_query($conn,$sql)) {
+             echo "Ergebnis gespeichert <br /> <br />";
+             $eingabe=0;
+            } else {
+                    echo "Anfrage aendern!" . $sql . "<br />" . mysqli_error($conn);
+             }
+        }
     }
 
      if(isset($_POST['spieler'])){
@@ -401,8 +425,8 @@ function fullhouse($w1,$w2,$w3,$w4,$w5) {
             
     <form action="" method="get"><table border="1">
 
-    <tr><td>Kategorie</td><td>mögliches Würfelergebnis </td><td>Spieler1</td><td>Spieler2</td></tr>
-    <tr><td>Einser</td><td><?php echo einser($w1,$w2,$w3,$w4,$w5)?> </td><td><?php echo $spieler1; ?></td><td><?php echo $spieler2; ?></td></tr>
+    <tr><td>Kategorie</td><td>mögliches Würfelergebnis </td><td><?php echo $spieler1; ?></td><td><?php echo $spieler2; ?></td></tr>
+    <tr><td>Einser</td><td><?php echo einser($w1,$w2,$w3,$w4,$w5)?> </td><td></td><td></td></tr>
 <tr><td>Zweier</td><td><?php echo zweier($w1,$w2,$w3,$w4,$w5)?></td></tr>
 <tr><td>Dreier</td><td><?php echo dreier($w1,$w2,$w3,$w4,$w5)?></td></tr>
 <tr><td>Vierer</td><td><?php echo vierer($w1,$w2,$w3,$w4,$w5)?></td></tr>
