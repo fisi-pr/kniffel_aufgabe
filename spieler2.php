@@ -13,7 +13,7 @@ IF (isset($_POST["save"])) {
          echo "Eingabe gespeichert <br /> <br />";
          echo "Hallo $spieler2, schön dich zu sehen! <br />";
          $eingabe=0;
-        header('Refresh: 5; URL= kniffel_aufgabe_alpha.php');
+        header('Refresh: 2; URL= kniffel_aufgabe_alpha.php');
         } else {
                 echo "Anfrage aendern!" . $sql . "<br />" . mysqli_error($conn);
          }
