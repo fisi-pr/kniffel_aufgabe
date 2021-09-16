@@ -15,7 +15,7 @@ $c3="";
 $c4="";
 $c5="";
 $i=1;  // Anzahl der wuerfeln max=3 //
-$a="";  // Anzahl der Runden max 26
+$a=1;  // Anzahl der Runden max 26
 $spieler = 1;
 $oberehaelfte1="";
 $gesamtoben1="";
@@ -65,9 +65,9 @@ $auswertung= 0;   // wird ein eins gesetzt, wenn der spieler auswertet  //
 
 
 if(isset($_POST['runde'])) {
-    $i=$_POST['runde'];
-    $i++;
-    if($i==27) {
+    $a=$_POST['runde'];
+    $a++;
+    if($a==27) {
         header('Refresh: 1; URL= spielende.php');
     }
 
@@ -165,9 +165,9 @@ else {
     $i=1;
 
      if(isset($_POST['a'])) {
-        $a=$_POST['a'];
-        if(IS_Numeric($a)) $a++;
-        else $a=2;
+        $i=$_POST['a'];
+        if(IS_Numeric($i)) $i++;
+        else $i=2;
     }
 
      if(isset($_POST['spieler'])){
@@ -411,7 +411,7 @@ function dreierpasch($w1,$w2,$w3,$w4,$w5) {
         else {
             $ergebnis7 = 0;
         }
-        return ergebnis7;
+        return $ergebnis7;
 
 }
 function viererpasch($w1,$w2,$w3,$w4,$w5) {
@@ -433,7 +433,7 @@ function viererpasch($w1,$w2,$w3,$w4,$w5) {
     else {
         $ergebnis8 = 0;
     }
-    return ergebnis8;
+    return $ergebnis8;
 }
 function full_house($w1,$w2,$w3,$w4,$w5) {
     if($w1==$w2&&$w2==$w3 && $w4==$w5) {
@@ -443,6 +443,9 @@ function full_house($w1,$w2,$w3,$w4,$w5) {
             $ergebnis9 = 25;
         }
         elseif($w1==$w2&&$w2==$w5 && $w3==$w4) {
+            $ergebnis9 = 25;
+        }
+        elseif($w1==$w3&&$w3==$w5 && $w2==$w4) {
             $ergebnis9 = 25;
         }
         elseif($w1==$w4&&$w4==$w5 && $w2==$w3) {
@@ -463,7 +466,7 @@ function full_house($w1,$w2,$w3,$w4,$w5) {
         else {
             $ergebnis9 = 0;
         }
-        return ergebnis9;
+        return $ergebnis9;
 }
 function kleine_strasse($w1,$w2,$w3,$w4,$w5) {
     $strasse_ = array($w1,$w2,$w3,$w4,$w5);
@@ -481,22 +484,30 @@ function kleine_strasse($w1,$w2,$w3,$w4,$w5) {
     else {
         $ergebnis10 = 0;
     }
-    return ergebnis10;
+    return $ergebnis10;
 }
 function grosse_strasse($w1,$w2,$w3,$w4,$w5) {
     $strasse_ = array($w1,$w2,$w3,$w4,$w5);
-    $strasse = array_unique($strasse_);
+    $strasse = array_unique($strasse_, SORT_NUMERIC);
     sort($strasse);
-    if([0]==1&&[1]==2&&[2]==3&&[3]==4&&[4]==5) {
+    // echo '<pre>'; print_r($strasse); echo '</pre>';
+    // var_dump(is_int([0]));
+    //     if([0]==1&&[1]==2&&[2]==3&&[3]==4&&[4]==5) {
+    //     $ergebnis11 = 40;
+    // }
+    // elseif([0]==2&&[1]==3&&[2]==4&&[3]==5&&[4]==6) {
+    //     $ergebnis11 = 40;
+    // }
+    if(in_array("1", "2", "3", "4", "5")) {
         $ergebnis11 = 40;
     }
-    elseif([0]==2&&[1]==3&&[2]==4&&[3]==5&&[4]==6) {
+    ifelse(in_array("2", "3", "4", "5", "6")) {
         $ergebnis11 = 40;
     }
     else {
         $ergebnis11 = 0;
     }
-    return ergebnis11;
+    return $ergebnis11;
     }
 
 function kniffel($w1,$w2,$w3,$w4,$w5) {
@@ -506,11 +517,11 @@ function kniffel($w1,$w2,$w3,$w4,$w5) {
     else {
         $ergebnis12 = 0;
     }
-    return ergebnis12;
+    return $ergebnis12;
 }
 function chance ($w1,$w2,$w3,$w4,$w5) {
     $ergebnis13 = $w1+$w2+$w3+$w4+$w5;
-    return ergebnis13;
+    return $ergebnis13;
 }
 ?>
 
